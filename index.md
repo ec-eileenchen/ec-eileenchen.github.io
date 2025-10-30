@@ -10,5 +10,5 @@ Here you will find all my projects and updates.
 
 ## Data Visualization
 Data for Public Good -- LETI Commpunty Partner HealthCare OverView and Analysis
-[View Project](index.md){: .btn}
+[View Project](data_for_public_good.md){: .btn}
 
