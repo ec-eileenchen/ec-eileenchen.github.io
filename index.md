@@ -3,8 +3,8 @@ title: Eileen Chen
 ---
 
 
-Welcome to my porfolio site!\n
-Here you will find all my projects and updates.\n
+Welcome to my porfolio site!\
+Here you will find all my projects and updates.
 
 # My Projects
 
