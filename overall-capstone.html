@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capstone Project | Eileen Chen</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles - Matching Portfolio Exactly */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --white: #ffffff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        /* Capstone Hero */
+        .capstone-hero {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .capstone-hero p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Responsive Design - Matching Portfolio */
+        @media (max-width: 992px) {
+            .hero, .about-content, .contact-container {
+                flex-direction: column;
+            }
+            
+            .hero-content, .about-text, .about-image, .contact-info, .contact-form {
+                padding-right: 0;
+                width: 100%;
+            }
+            
+            .hero-image, .about-image {
+                margin-top: 40px;
+            }
+            
+            .profile-img {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 18px;
+            }
+            
+            .right {
+                left: 0;
+            }
+            
+            .nav-cards {
+                flex-wrap: wrap;
+            }
+            
+            .nav-card {
+                flex: 0 0 calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+    
+            .hero {
+                padding-top: 150px;
+                padding-bottom: 60px;
+                min-height: 40vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Slim Hero Section -->
+    <section id="home" class="hero capstone-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Capstone Overall Reflection</h1>
+            </div>
+        </div>
+    </section>
+    <!-- Reflection Section -->
+    <section id="overview" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <p>___reflection content____</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
