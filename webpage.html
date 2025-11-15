@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Fraud Protection</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #478DC9;
+            --secondary: #2ecc71;
+            --accent: #e74c3c;
+            --light: white;
+            --dark: #478DC9;
+            --success: #2ecc71;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .language-selector select {
+            background: #478DC9;
+            color: white;
+            border: 1px solid white;
+            padding: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero h2 {
+            font-size: 1.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 2px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid white;
+        }
+        
+        .btn:hover {
+            background-color: #c0392b;
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 4rem 0;
+        }
+        
+        section:nth-child(even) {
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+        }
+        
+        /* Features Section */
+        .chart-container {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .chart-placeholder {
+            background-color: #f8f9fa;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #dee2e6;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-explanations {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .feature-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Rights Section */
+        .rights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .rights-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .rights-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .rights-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        /* Resources Section */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .resource-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            text-align: center;
+            border-top: 4px solid var(--success);
+        }
+        
+        .resource-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .resource-card a {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .footer-section ul li a:hover {
+            color: white;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                margin-bottom: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo" data-i18n="site_title"></div>
+            <nav>
+                <ul>
+                    <li><a href="#features" data-i18n="nav_features"></a></li>
+                    <li><a href="#rights" data-i18n="nav_rights"></a></li>
+                    <li><a href="#resources" data-i18n="nav_resources"></a></li>
+                </ul>
+            </nav>
+            <div class="language-selector">
+                <select id="language-select">
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                    <option value="zh">中文</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 data-i18n="hero_title"></h1>
+            <h2 data-i18n="hero_subtitle"></h2>
+            <p data-i18n="hero_description"></p>
+            <div class="cta-buttons">
+                <a href="#features" class="btn" data-i18n="hero_btn_learn"></a> 
+                <a href="#rights" class = "btn btn-secondary" data-i18n="hero_btn_rights"></a>
+                <a href="#resources" class="btn btn-secondary" data-i18n="hero_btn_help"></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <div class="container">
+            <h2 class="section-title" data-i18n="features_title"></h2>
+            
+            <div class="chart-container">
+                <h3 data-i18n="chart_title"></h3>
+                <div class="chart-placeholder">
+                    <!-- This is where your SHAP chart would be displayed -->
+                    <p data-i18n="chart_placeholder"></p>
+                </div>
+                <p class="chart-caption" data-i18n="chart_description"></p>
+            </div>
+            
+            <div class="feature-explanations">
+                <div class="feature-card">
+                    <h3 data-i18n="feature_1"></h3>
+                    <p data-i18n="feature_1_dis"></p>
+                </div>
+                <div class="feature-card">
+                    <h3 data-i18n="feature_2"></h3>
+                    <p data-i18n="feature_2_dis"></p>
+                </div>
+                <div class="feature-card">
+                    <h3 data-i18n="feature_3"></h3>
+                    <p data-i18n="feature_3_dis"></p>
+                </div>
+                <div class="feature-card">
+                    <h3 data-i18n="feature_4"></h3>
+                    <p data-i18n="feature_4_dis"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rights Section -->
+    <section id="rights">
+        <div class="container">
+            <h2 class="section-title" data-i18n="rights_title"></h2>
+            <div class="rights-grid">
+                <div class="rights-card">
+                    <h3 data-i18n="right_1"></h3>
+                    <p data-i18n="right_1_dis"></p>
+                </div>
+                <div class="rights-card">
+                    <h3 data-i18n="right_2"></h3>
+                    <p data-i18n="right_2_dis"></p>
+                </div>
+                <div class="rights-card">
+                    <h3 data-i18n="right_3"></h3>
+                    <p data-i18n="right_3_dis"></p>
+                </div>
+                <div class="rights-card">
+                    <h3 data-i18n="right_4"></h3>
+                    <p data-i18n="right_4_dis"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources">
+        <div class="container">
+            <h2 class="section-title" data-i18n="resources_title"></h2>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <h3 data-i18n="resources_report_title"></h3>
+                    <p data-i18n="resources_report_desc"></p>
+                    <a href="https://www.fenwa.org/consumer-protection-resources" data-i18n="resources_report_link"></a>
+                </div>
+                <div class="resource-card">
+                    <h3 data-i18n="resources_counseling_title"></h3>
+                    <p data-i18n="resources_counseling_desc"></p>
+                    <a href="https://www.identitytheft.gov/" data-i18n="resources_counseling_link"></a>
+                </div>
+                <div class="resource-card">
+                    <h3 data-i18n="resources_emergency_title"></h3>
+                    <p data-i18n="resources_emergency_desc"></p>
+                    <a href="https://www.consumerfinance.gov/ask-cfpb/how-do-i-get-my-money-back-after-i-discover-an-unauthorized-transaction-or-money-missing-from-my-bank-account-en-1017/" data-i18n="resources_emergency_link"></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 data-i18n="footer_links_title"></h3>
+                    <ul>
+                        <li><a href="#features" data-i18n="footer_link1"></a></li>
+                        <li><a href="#rights" data-i18n="footer_link2"></a></li>
+                        <li><a href="#resources" data-i18n="footer_link3"></a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 data-i18n="footer_contact_title"></h3>
+                    <ul>
+                        <li>
+                            <span data-i18n="footer_contact1"></span>:
+                            <a href="tel:360-830-6190" data-i18n="contact1"></a>
+                        </li>
+
+                        <li>
+                            <span data-i18n="footer_contact2"></span>:
+                            <a href="mailto:hello@fenwa.org" data-i18n="contact2"></a>
+                        </li>
+
+                        <li>
+                            <span data-i18n="footer_contact3"></span>:
+                            <a href="https://www.fenwa.org/" data-i18n="contact3"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language Data
+        const translations = {
+            en: {
+                // Header
+                "site_title": "Fraud Protect",
+                "nav_features": "How It Works",
+                "nav_rights": "Your Rights",
+                "nav_resources": "Resources",
+
+                // Hero
+                "hero_title": "Protect Your Money",
+                "hero_subtitle": "Uderstanding Fraud Detection and How to Protect Yourself",
+                "hero_description": "Uncovering how banks spot suspicious transactions and what you should know about your credit card rights.",
+                "hero_btn_learn": "Learn About Fraud Alerts",
+                "hero_btn_rights": "Know Your Rights",
+                "hero_btn_help": "Help and Resources",
+
+                // Features
+                "features_title": "How Banks Detect Suspicious Activity",
+                "chart_title": "Most Important Factors in Fraud Detection",
+                "chart_placeholder": "SHAP Summary Bar Chart Visualization",
+                "chart_description": "This chart shows which transaction features most influence fraud detection models. Features higher on the chart have a greater impact on identifying suspicious activity.",
+                "feature_1": "General Counting",
+                "feature_1_dis": "Number of people and associated elements are associated with the payment",
+                "feature_2": "Vesta Engineered Feature",
+                "feature_2_dis": "Spending patterns analysis make by the financial technology companies.",
+                "feature_3": "General Card Information",
+                "feature_3_dis": "The type of card being used.",
+                "feature_4": "Card Holder Information",
+                "feature_4_dis": "Credit card holders information",
+
+                // Rights
+                "rights_title": "Your Credit Card Rights",
+                "right_1": "Fair Credit Billing Act",
+                "right_1_dis": "You have 60 days to report unauthorized transactions to your credit card issuer, and liability cannot exceed $50.",
+                "right_2": "Zero-Liability Fraud Protection",
+                "right_2_dis": "Zero-liability fraud protection is offer from many credit card issuers. If reported within 30 days, you will not bare any liability.",
+                "right_3": "Place a Fraud Alert",
+                "right_3_dis":"You can place fraud alert on your credit report to let creditors know that further verifications are needed to prevent someone applies for credit card in your name.",
+                "right_4": "FTC Identity Theft Report",
+                "right_4_dis":"File an identity theft report with the FTC, send it with proof of identification and fraudulent charges record to your bank to remove thr fraud from your credit history.",
+
+                // Resources
+                "resources_title": "Support & Resources",
+                "resources_report_title": "Consumer Protection",
+                "resources_report_desc": "XXX",
+                "resources_report_link": "Find More Protection Resources",
+                "resources_counseling_title": "Identity Theft and Recovery",
+                "resources_counseling_desc": "XXX",
+                "resources_counseling_link": "Report Identity Theft",
+                "resources_emergency_title": "Mitigate Payment Services Fraud",
+                "resources_emergency_desc": "XXX",
+                "resources_emergency_link": "Learn More about Mitigation Methods",
+
+                // Footer
+                "footer_links_title": "Quick Links",
+                "footer_link1": "How Fraud Detection Works",
+                "footer_link2": "Know Your Rights",
+                "footer_link3": "Emergency Resources",
+                "footer_contact_title": "Contact",
+                "footer_contact1": "Telephone Assistance",
+                "contact1": "(360)830-6190",
+                "footer_contact2": "Email Assistance",
+                "contact2": "hello@fenwa.org",
+                "footer_contact3": "Local Services Directory",
+                "contact3": "Financial Empowerment Network",
+            },
+            es: {
+                "site_title": "Protección contra Fraudes",
+                "nav_features": "Cómo Funciona",
+                "nav_rights": "Tus Derechos",
+                "nav_resources": "Recursos",
+                "hero_title": "Protege Tu Dinero: Entendiendo la Detección de Fraudes",
+                "hero_description": "Explicaciones simples sobre cómo los bancos detectan transacciones sospechosas y lo que debes saber sobre tus derechos con la tarjeta de crédito.",
+                "hero_btn_learn": "Aprende sobre Alertas de Fraude",
+                "hero_btn_help": "Ayuda y Recursos",
+                "features_title": "Cómo los Bancos Detectan Actividad Sospechosa",
+                "chart_title": "Factores Más Importantes en la Detección de Fraudes",
+                "chart_placeholder": "Visualización de Gráfico de Barras Resumen SHAP",
+                "chart_description": "Este gráfico muestra qué características de las transacciones influyen más en los modelos de detección de fraudes. Las características más altas en el gráfico tienen un mayor impacto en identificar actividad sospechosa.",
+                "feature_1": "Característica 1",
+                "feature_2": "Característica 2",
+                "feature_3": "Característica 3",
+                "feature_4": "Característica 4",
+                "rights_title": "Tus Derechos de Tarjeta de Crédito",
+                "right_1": "Derecho 1",
+                "right_2": "Derecho 2",
+                "right_3": "Derecho 3",
+                "right_4": "Derecho 4",
+                "resources_title": "Ayuda Inmediata y Recursos",
+                "resources_report_title": "Reporta Fraude Inmediatamente",
+                "resources_report_desc": "",
+                "resources_report_link": "Encuentra la información de contacto de tu banco",
+                "resources_counseling_title": "Asesoramiento Financiero",
+                "resources_counseling_desc": "",
+                "resources_counseling_link": "Encuentra un asesor cerca de ti",
+                "resources_emergency_title": "Soporte de Emergencia",
+                "resources_emergency_desc": "",
+                "resources_emergency_link": "Obtén asistencia de emergencia",
+                "footer_links_title": "Enlaces Rápidos",
+                "footer_link1": "Cómo Funciona la Detección de Fraudes",
+                "footer_link2": "Conoce Tus Derechos",
+                "footer_link3": "Recursos de Emergencia",
+                "footer_contact_title": "Contacto",
+                "footer_contact1": "Línea de Soporte: ",
+                "footer_contact2": "Asistencia por Correo",
+                "footer_contact3": "Directorio de Servicios Locales"
+            },
+            zh: {
+                "site_title": "詐騙防護",
+                "nav_features": "運作原理",
+                "nav_rights": "您的權利",
+                "nav_resources": "資源",
+                "hero_title": "保護您的資金：了解詐騙檢測",
+                "hero_description": "簡單解釋銀行如何發現可疑交易，以及您應該了解的信用卡權利。",
+                "hero_btn_learn": "了解詐騙警示",
+                "hero_btn_help": "幫助與資源",
+                "features_title": "銀行如何檢測可疑活動",
+                "chart_title": "詐騙檢測中最重要因素",
+                "chart_placeholder": "SHAP 摘要條形圖可視化",
+                "chart_description": "此圖表顯示哪些交易特徵對詐騙檢測模型的影響最大。圖表中位置越高的特徵對識別可疑活動的影響越大。",
+                "feature_1": "特徵 1",
+                "feature_2": "特徵 2",
+                "feature_3": "特徵 3",
+                "feature_4": "特徵 4",
+                "rights_title": "您的信用卡權利",
+                "right_1": "權利 1",
+                "right_2": "權利 2",
+                "right_3": "權利 3",
+                "right_4": "權利 4",
+                "resources_title": "即時幫助與資源",
+                "resources_report_title": "立即舉報詐騙",
+                "resources_report_desc": "",
+                "resources_report_link": "查找您銀行的聯繫信息",
+                "resources_counseling_title": "財務諮詢",
+                "resources_counseling_desc": "",
+                "resources_counseling_link": "查找附近的顧問",
+                "resources_emergency_title": "緊急支援",
+                "resources_emergency_desc": "",
+                "resources_emergency_link": "獲取緊急援助",
+                "footer_links_title": "快速連結",
+                "footer_link1": "詐騙檢測如何運作",
+                "footer_link2": "了解您的權利",
+                "footer_link3": "緊急資源",
+                "footer_contact_title": "聯絡我們",
+                "footer_contact1": "支援熱線：",
+                "footer_contact2": "郵件協助",
+                "footer_contact3": "本地服務目錄"
+            }
+        };
+
+        // Function to update content based on selected language
+        function updateContent(lang) {
+            const langData = translations[lang];
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (langData && langData[key]) {
+                    element.textContent = langData[key];
+                }
+            });
+            
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+            
+            // Update language selector
+            document.getElementById('language-select').value = lang;
+            
+            // Save preference
+            localStorage.setItem('preferred-language', lang);
+        }
+
+        // Function to change language
+        function changeLanguage(lang) {
+            updateContent(lang);
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set up language selector change event
+            document.getElementById('language-select').addEventListener('change', function(e) {
+                changeLanguage(e.target.value);
+            });
+            
+            // Check for saved language or use browser language
+            const savedLanguage = localStorage.getItem('preferred-language');
+            const browserLang = navigator.language.split('-')[0];
+            
+            if (savedLanguage && translations[savedLanguage]) {
+                changeLanguage(savedLanguage);
+            } else if (translations[browserLang]) {
+                changeLanguage(browserLang);
+            } else {
+                changeLanguage('en');
+            }
+        });
+    </script>
+</body>
+</html>
