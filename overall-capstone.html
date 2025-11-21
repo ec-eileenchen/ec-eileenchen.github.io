@@ -170,9 +170,24 @@
         <div class="container">
             <div class="about-content">
                 <div class="about-text">
-                    <p>___reflection content____</p>
+                    <h2>From Personal Experience to Hands-On Practice - A Deep Dive into Fraud Detection</h2>
+                    <p>My capstone journey, "Understanding How Credit Card Fraud is Detected and Protecting Yourself From Fraud", was born at the intersection of personal experience and professional aspiration. 
+                        During an intervire for an investment banking internship, I was asked about fraud detection models related cases. It made me realize that these cases questions weren't just theoretical, it was a windo into the real-world challenges that financial institutions encounter with daily.</p>
+                    <br>
+                    <p>The topic became personally complelling because it demystified a common experience, receiving a text from the bank asking whether it was you that was using the card, and transformed it into a tangible data science problem. 
+                        I saw this proect as the perfect opportunity to bride my academicd stydies in Applied Computing, Data Analytics, and Business Administration with my career ambitions in the dunamix fintech space.</p>
+                    <h2>From Data to Insights</h2>
+                    <p>I work with the massive Vesta partnered IEEE-CIS dataset consists 435 features from merged transaction and identity information tables. 
+                        A major data quality issue was the presence of missing values and features on vastly different scales. My data analytics minor provided the framework for a proper preprocessing stage, which imvolved imputation for missing values, one-hot encoding for categorical veriables, and robust standardization to ensure no feature is set up correctly for the models.</p>
+                    <br>
+                    <p>The model selection process was a lesson in empirical testing and theoretical understanding. I experimented with XGBoost, LightGBM, and the LSTM network. The LSTM's underperformance was a key learning moment. My hypothesis, due to the characteristic of the dataset, was that the sequential nature of LSTMs required longer, consistent frudulent patterns to learn from.
+                        Given the extreme small amout of fraud cases in the dataset, the LSTM struggled to find meaningful temporal dependencies,
+                        where tree-based models like LightGBM outperform at evaluating the complex relationships between hundred of features at a single point in time. 
+                        Light GBM was ultimately selected nor only for its performance across key metrics but also for its computational efficiency, which was critical given the dataset's size and my hardware constraints.
+                        Learning to implement and tune these models, especially the entirely new concept of LSTMs, was a steep curve. I relied heavily on official documentation and other related blog posts, where the key insight was understandinghow to structure time-series data for LSTM input and the importance of its hyperparameters.</p>
                 </div>
             </div>
         </div>
     </section>
+
 </body>
