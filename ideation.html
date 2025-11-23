@@ -167,18 +167,14 @@
     <section class="capstone-hero">
         <div class="container">
             <h1>Understanding Credit Card Fraud Detection</h1>
-            <p>An Applied Computing Capstone Project by Eileen Chen</p>
-            <p>Autumn 2025 | Minors: Business Administration & Data Analytics</p>
-            <p>Faculty Advisors: Dr. Laurie Anderson, Dr. Brent Lagesse</p>
         </div>
     </section>
 
     <!-- Architecture Section -->
     <section id="architecture" class="section-light">
         <div class="container">
-            <h2>Architectural Diagram: From Concept to Implementation</h2>
-            
             <div class="content-card">
+                <h2>Architectural Diagram: From Concept to Implementation</h2>
                 <p>This section details the technical architecture of the credit card fraud detection and education system. It demonstrates how the project's design evolved from an initial high-level concept into a detailed, implemented structure, showcasing the technical decisions made throughout the capstone process.</p>
                 
                 <h3>Initial Architectural Vision</h3>
@@ -210,14 +206,14 @@
                 
                 <h4>Key Components & Implementation Details:</h4>
                 
-                <h5>Machine Learning Pipeline (The Analytical Engine):</h5>
+                <strong>Machine Learning Pipeline (The Analytical Engine)</strong>
                 <ul>
                     <li><strong>Data Source & Preprocessing:</strong> The transaction.csv and identity.csv files were merged on TransactionID. A rigorous preprocessing pipeline was implemented using Pandas and NumPy to handle missing values, encode categorical variables (like ProductCD and card_type), and standardize numerical features. A time-series split was used for validation to prevent data leakage.</li>
                     <li><strong>Model Training & Validation:</strong> Three models (XGBoost, LightGBM, LSTM) were rigorously trained and evaluated. The primary evaluation metrics were Precision, Recall, F1-Score, and ROC-AUC, reflecting the real-world cost trade-offs of fraud detection. LightGBM was selected as the production model due to its superior performance and computational efficiency.</li>
                     <li><strong>Explainable AI (XAI):</strong> The SHAP (SHapley Additive exPlanations) library was applied to the LightGBM model to generate global explanations. This process identified and ranked the most important features (e.g., 'Vesta-engineered features,' 'transaction amount') that drive fraud predictions, forming the core analytical insight for the user-facing component.</li>
                 </ul>
                 
-                <h5>User Education Pipeline (The Delivery Mechanism):</h5>
+                <strong>User Education Pipeline (The Delivery Mechanism)</strong>
                 <ul>
                     <li><strong>Insights & Content Generation:</strong> The technical outputs from the SHAP analysis were translated into clear, non-technical language. This content was prepared in English, Spanish, and Chinese to meet the accessibility needs of the stakeholder's community.</li>
                     <li><strong>Web Application:</strong> A static HTML/CSS/JavaScript website was built from scratch to host this content. Key implemented features include:
