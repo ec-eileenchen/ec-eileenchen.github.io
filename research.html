@@ -3,125 +3,228 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Flow Diagram | Fraud Detection</title>
+    <title>Capstone Project | Eileen Chen</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Base Styles - Matching Portfolio Exactly */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: var(--text-color);
+            background-color: var(--white);
+        }
+
+        .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 0 20px;
         }
-        
+
+        section {
+            padding: 100px 0;
+        }
+
         h1, h2, h3 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 3%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+        }
+
+        p {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        ul, ol {
+            text-align: left;
+            margin-left: 20px;
             margin-bottom: 20px;
         }
-        
-        .img-container {
-            margin: 40px 0;
-            text-align: center;
+
+        li {
+            text-align: left;
+            margin-bottom: 8px;
+        }
+
+        /* Capstone Hero */
+        .capstone-hero {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 150px 0 100px;
         }
         
+        .capstone-hero p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Section Styles */
+        .section-light {
+            background-color: var(--white);
+        }
+
+        .section-gray {
+            background-color: var(--light-gray);
+        }
+
+        /* Image Styles */
+        .img-container {
+            margin: 40px 0;
+            text-align: left;
+        }
+
         .img-container img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow);
         }
-        
+
         .img-caption {
             margin-top: 15px;
             font-style: italic;
             color: #666;
+            text-align: left;
             font-weight: 600;
         }
-        
-        .data-section {
-            background: #f8f9fa;
+
+        /* Content Cards */
+        .content-card {
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
             padding: 30px;
-            border-radius: 8px;
-            margin: 30px 0;
+            margin-bottom: 30px;
         }
-        
-        .feature-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-top: 30px;
-        }
-        
-        .feature-card {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .feature-grid {
-                grid-template-columns: 1fr;
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+    
+            .capstone-hero {
+                padding-top: 150px;
+                padding-bottom: 60px;
             }
         }
     </style>
 </head>
 <body>
-    <h1>Fraud Detection System - Data Flow</h1>
-    
-    <div class="data-section">
-        <h2>Dataset Overview</h2>
-        <p>The fraud detection system analyzes two main types of data to identify suspicious patterns and protect users from fraudulent transactions.</p>
-        
-        <div class="feature-grid">
-            <div class="feature-card">
-                <h3>Transaction Data</h3>
-                <p>Records of financial transactions including purchases, money transfers, and service payments over a 6-month period.</p>
-                
-                <h4>Key Information Tracked:</h4>
-                <ul>
-                    <li><strong>Payment Details:</strong> Amount, timing, and product/service type</li>
-                    <li><strong>Card Information:</strong> Card type, issuing bank, and country</li>
-                    <li><strong>Location Data:</strong> Billing address and geographic distances</li>
-                    <li><strong>Contact Information:</strong> Email domains for both buyer and recipient</li>
-                    <li><strong>Behavior Patterns:</strong> Time between transactions, matching information</li>
-                    <li><strong>Advanced Analytics:</strong> Vesta's proprietary risk scoring features</li>
-                </ul>
-            </div>
-            
-            <div class="feature-card">
-                <h3>Identity & Device Data</h3>
-                <p>Digital footprint information collected during transactions to verify user identity and detect suspicious activity.</p>
-                
-                <h4>Security Information Collected:</h4>
-                <ul>
-                    <li><strong>Device Information:</strong> Computer, phone, or tablet details</li>
-                    <li><strong>Network Data:</strong> IP addresses, internet providers</li>
-                    <li><strong>Digital Signatures:</strong> Browser, operating system, and version</li>
-                    <li><strong>Connection Details:</strong> Proxy usage and network patterns</li>
-                </ul>
-                
-                <p><em>Note: Specific field names are masked to protect privacy and security systems.</em></p>
+    <!-- Slim Hero Section -->
+    <section id="home" class="hero capstone-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Fraud Detection System: Data Flow</h1>
             </div>
         </div>
+    </section>
+     <!-- User Experience Section -->
+    <section id="overview" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Dataset Overview</h2>
+                    <p>The fraud detection system analyzes two main types of data to identify suspicious patterns and protect users from fraudulent transactions.</p>
+    
+                    <h3>Transaction Data</h3>
+                    <p>Records of financial transactions including purchases, money transfers, and service payments over a 6-month period.</p>
+                
+                    <h4>Key Information Tracked:</h4>
+                    <ul>
+                        <li><strong>Payment Details:</strong> Amount, timing, and product/service type</li>
+                        <li><strong>Card Information:</strong> Card type, issuing bank, and country</li>
+                        <li><strong>Location Data:</strong> Billing address and geographic distances</li>
+                        <li><strong>Contact Information:</strong> Email domains for both buyer and recipient</li>
+                        <li><strong>Behavior Patterns:</strong> Time between transactions, matching information</li>
+                        <li><strong>Advanced Analytics:</strong> Vesta's proprietary risk scoring features</li>
+                    </ul>
+            
+                    <h3>Identity & Device Data</h3>
+                    <p>Digital footprint information collected during transactions to verify user identity and detect suspicious activity.</p>
+                
+                    <h4>Security Information Collected:</h4>
+                    <ul>
+                        <li><strong>Device Information:</strong> Computer, phone, or tablet details</li>
+                        <li><strong>Network Data:</strong> IP addresses, internet providers</li>
+                        <li><strong>Digital Signatures:</strong> Browser, operating system, and version</li>
+                        <li><strong>Connection Details:</strong> Proxy usage and network patterns</li>
+                    </ul>
+                
+                    <p><em>Note: Specific field names are masked to protect privacy and security systems.</em></p>
         
-        <h3>How This Data Helps Detect Fraud</h3>
-        <p>The system analyzes patterns across these datasets to identify unusual behavior, such as:</p>
-        <ul>
-            <li>Transactions from unfamiliar locations or devices</li>
-            <li>Unusual spending patterns or amounts</li>
-            <li>Suspicious timing between purchases</li>
-            <li>Mismatched billing and device information</li>
-            <li>High-frequency transactions that suggest automated fraud</li>
-        </ul>
-    </div>
+                    <h3>How This Data Helps Detect Fraud</h3>
+                    <p>The system analyzes patterns across these datasets to identify unusual behavior, such as:</p>
+                    <ul>
+                        <li>Transactions from unfamiliar locations or devices</li>
+                        <li>Unusual spending patterns or amounts</li>
+                        <li>Suspicious timing between purchases</li>
+                        <li>Mismatched billing and device information</li>
+                        <li>High-frequency transactions that suggest automated fraud</li>
+                    </ul>
     
-    <h2>Data Flow Diagram</h2>
-    <p>The diagram below shows how raw transaction and identity data flows through the system to become actionable fraud detection insights.</p>
+                    <h2>Data Flow Diagram</h2>
+                    <p>The diagram below shows how raw transaction and identity data flows through the system to become actionable fraud detection insights.</p>
     
-    <div class="img-container">
-        <!-- INSERT YOUR DATAFLOW DIAGRAM HERE -->
-        <img src="YOUR_DATAFLOW_DIAGRAM.png" alt="Fraud Detection Data Flow Diagram">
-        <p class="img-caption">Figure 3. Data flow diagram showing the transformation from raw transaction and identity data to processed training dataset</p>
-    </div>
+                    <div class="img-container">
+                        <!-- INSERT YOUR DATAFLOW DIAGRAM HERE -->
+                        <img src="YOUR_DATAFLOW_DIAGRAM.png" alt="Fraud Detection Data Flow Diagram">
+                        <p class="img-caption">Figure 3. Data flow diagram showing the transformation from raw transaction and identity data to processed training dataset</p>
+                    </div>
+                </div>
+            </div>
+        </div>   
 </body>
 </html>
