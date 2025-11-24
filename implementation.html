@@ -191,8 +191,6 @@
     <section class="hero">
         <div>
             <h1>Success Analysis & Performance Metrics</h1>
-            <p>Quantitative results demonstrating the effectiveness of the fraud detection system</p>
-        </div>
     </section>
 
     <!-- Main Content -->
@@ -227,23 +225,21 @@
                 </div>
             </div>
 
-            <div class="insight-card">
-                <h3>Key Insight: Precision-Recall Tradeoff</h3>
-                <p>The model was optimized for higher recall (62.9%) to catch more fraudulent transactions, accepting lower precision (33.1%) to minimize financial losses. This reflects real-world banking priorities where missing fraud is more costly than occasional false positives.</p>
-                <p><strong>Business Impact:</strong> This strategic balance ensures that genuine fraud cases are detected while maintaining reasonable operational efficiency for financial institutions.</p>
-            </div>
+            <h3>Key Insight: Precision-Recall Tradeoff</h3>
+            <p>The model was optimized for higher recall (62.9%) to catch more fraudulent transactions, accepting lower precision (33.1%) to minimize financial losses. This reflects real-world banking priorities where missing fraud is more costly than occasional false positives.</p>
+            <p><strong>Business Impact:</strong> This strategic balance ensures that genuine fraud cases are detected while maintaining reasonable operational efficiency for financial institutions.</p>
 
-            <div class="chart-container">
-                <h3>Feature Importance Analysis</h3>
-                <div class="chart-wrapper">
-                    <canvas id="featureImportanceChart"></canvas>
-                </div>
+            <h2>Feature Importance Analysis</h2>
+            <div class="img-container">
+                <p class="img-caption">Figure 1. SHAP summary bar chart</p>
+                <img src="Images/XGB_SHAP_summary_bar_chart.jpg" alt="Initial Architecture Diagram">
             </div>
-
-            <div class="insight-card">
-                <h3>Feature Importance Analysis</h3>
+            <div class="img-container">
+                <p class="img-caption">Figure 2. SHAP summary violin graph</p>
+                <img src="Images/3_XGB_SHAP_summary_bar_chart.jpg" alt="Initial Architecture Diagram">
+            </div>
+           <h3>Feature Importance Analysis</h3>
                 <p>The SHAP analysis revealed that transaction patterns, card information, and behavioral features were the most significant predictors of fraudulent activity. This validates the approach of combining multiple data sources for comprehensive fraud detection.</p>
-            </div>
         </div>
     </section>
 
@@ -294,68 +290,6 @@
                         pointLabels: {
                             font: {
                                 size: 12,
-                                weight: 'bold'
-                            },
-                            color: '#2c3e50'
-                        },
-                        min: 0,
-                        max: 100,
-                        ticks: {
-                            stepSize: 20,
-                            backdropColor: 'transparent',
-                            color: '#666'
-                        }
-                    }
-                }
-            }
-        });
-
-        // Feature Importance Radar Chart
-        const featureCtx = document.getElementById('featureImportanceChart').getContext('2d');
-        new Chart(featureCtx, {
-            type: 'radar',
-            data: {
-                labels: ['Transaction Patterns', 'Card Information', 'Behavioral Features', 'Device Data', 'Location Data', 'Time Patterns'],
-                datasets: [{
-                    label: 'Feature Importance',
-                    data: [92, 85, 78, 65, 58, 72],
-                    backgroundColor: 'rgba(231, 76, 60, 0.2)',
-                    borderColor: 'rgba(231, 76, 60, 1)',
-                    pointBackgroundColor: 'rgba(231, 76, 60, 1)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgba(231, 76, 60, 1)',
-                    pointRadius: 4,
-                    pointHoverRadius: 6
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                    title: {
-                        display: true,
-                        text: 'Key Fraud Detection Features',
-                        font: {
-                            size: 16,
-                            weight: 'bold'
-                        }
-                    }
-                },
-                scales: {
-                    r: {
-                        angleLines: {
-                            display: true,
-                            color: 'rgba(0, 0, 0, 0.1)'
-                        },
-                        grid: {
-                            color: 'rgba(0, 0, 0, 0.1)'
-                        },
-                        pointLabels: {
-                            font: {
-                                size: 11,
                                 weight: 'bold'
                             },
                             color: '#2c3e50'
