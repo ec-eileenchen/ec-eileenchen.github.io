@@ -246,10 +246,24 @@
                 </div>
             </div>
 
-            <h3>Key Insight: Precision-Recall Tradeoff</h3>
-            <p>The model was optimized for higher recall (62.9%) to catch more fraudulent transactions, accepting lower precision (33.1%) to minimize financial losses. This reflects real-world banking priorities where missing fraud is more costly than occasional false positives.</p>
-            <p><strong>Business Impact:</strong> This strategic balance ensures that genuine fraud cases are detected while maintaining reasonable operational efficiency for financial institutions.</p>
+            <h3>Key Insight: The Real-World Logic Behind Fraud Detection Metrics</h3>
+            <p>In credit card fraud detection, there's a fundamental trade-off between two goals:</p>
+            <ul>
+                <li>Catching as much fraud as possible (High Recall)</li>
+                <li>Only flagging transactions you're sure about (High Precision)</li>
+            </ul>
+            <p>Real-world systems prioritize high recall because the cost of missing fraud (a "false negative") is much higher than the cost of a false alarm (a "false positive").</p>
             <br>
+            <p>The model's performance (~60% recall, ~30% precision) follows business logic and make financial sense due to the following of reasons.</p>
+            <ul>
+                <li>A single missed fraud can cost hundreds of dollars in direct losses</li>
+                <li>A false alarm typically costs just a few dollars in customer service time</li>
+                <li>Even at 30% precision, the value of prevented fraud far outweighs the cost of investigating false alerts</li>
+            </ul>
+            <br>
+
+            <h3>Business Impact</h3>
+            <p>This strategic balance allows financial institutions to minimize major financial losses from undetected fraud while maintaining operational efficiency. The occasional false positive is treated as an acceptable cost of doing business compared to the alternative of letting more fraud slip through.</p>
             
             <h2>Feature Importance Analysis</h2>
             <div class="img-container">
