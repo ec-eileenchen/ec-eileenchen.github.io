@@ -78,7 +78,7 @@
             text-align: left;
         }
         .hero {
-            background: linear-gradient(135deg, #2c3e50, #3498db);
+            background:var(--primary-color);
             color: white;
             padding: 100px 0;
             text-align: center;
@@ -189,7 +189,6 @@
 
     <!-- Main Content -->
     <section>
-        <div class="container">
             <!-- Model Performance Metrics -->
             <div class="analysis-section">
                 <div class="metrics-grid">
@@ -212,11 +211,10 @@
                         <div class="metric-value">43.4%</div>
                         <div class="metric-label">F1-Score</div>
                     </div>
-                </div>
 
-                <div class="chart-container">
-                    <canvas id="performanceChart"></canvas>
-                </div>
+                    <div class="chart-container">
+                        <canvas id="performanceChart"></canvas>
+                    </div>
 
                 <h2>Key Insight: Precision-Recall Tradeoff</h2>
                 <p>The model was optimized for higher recall (62.9%) to catch more fraudulent transactions, accepting lower precision (33.1%) to minimize financial losses. This reflects real-world banking priorities where missing fraud is more costly than occasional false positives.</p>
