@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Source Code | Fraud Detection Capstone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            color: white;
+            text-align: center;
+        }
+
+        .hero p {
+            text-align: center;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .code-section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .code-description {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        pre {
+            border-radius: 8px;
+            padding: 20px !important;
+            background: #f8f9fa !important;
+            border: 1px solid #e9ecef;
+            overflow-x: auto;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 50px 0;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Source Code: Key Implementation Details</h1>
+            <p>Critical algorithms and innovative solutions from the fraud detection system</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section>
+        <div class="container">
+            <!-- Data Preprocessing -->
+            <div class="code-section">
+                <div class="code-header">
+                    <h2>1. Advanced Data Preprocessing Pipeline</h2>
+                </div>
+                <div class="code-description">
+                    <p><strong>Innovation:</strong> Custom preprocessing pipeline handling mixed data types, missing values, and feature engineering with memory optimization for large datasets.</p>
+                </div>
+                <pre><code class="language-python">
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.model_selection import TimeSeriesSplit
+
+class FraudDataPreprocessor:
+    def __init__(self):
+        self.scalers = {}
+        self.encoders = {}
+        self.feature_columns = []
+    
+    def merge_datasets(self, transaction_df, identity_df):
+        """Merge transaction and identity data with memory optimization"""
+        # Reduce memory usage by downcasting numeric types
+        transaction_df = self.reduce_memory_usage(transaction_df)
+        identity_df = self.reduce_memory_usage(identity_df)
+        
+        # Merge on TransactionID with indicator for missing identity data
+        merged_df = pd.merge(
+            transaction_df, 
+            identity_df, 
+            on='TransactionID', 
+            how='left',
+            indicator='has_identity_data'
+        )
+        return merged_df
+    
+    def reduce_memory_usage(self, df):
+        """Aggressive memory optimization for large datasets"""
+        for col in df.columns:
+            col_type = df[col].dtype
+            
+            if col_type != object:
+                c_min = df[col].min()
+                c_max = df[col].max()
+                
+                if str(col_type)[:3] == 'int':
+                    if c_min > np.iinfo(np.int8).min and c_max < np.iinfo(np.int8).max:
+                        df[col] = df[col].astype(np.int8)
+                    elif c_min > np.iinfo(np.int16).min and c_max < np.iinfo(np.int16).max:
+                        df[col] = df[col].astype(np.int16)
+                    # ... continue for int32, int64
+                else:
+                    if c_min > np.finfo(np.float16).min and c_max < np.finfo(np.float16).max:
+                        df[col] = df[col].astype(np.float16)
+                    # ... continue for float32
+        return df
+    
+    def handle_missing_values(self, df):
+        """Strategic missing value imputation based on feature analysis"""
+        # For Vesta features, use median imputation
+        vesta_cols = [col for col in df.columns if col.startswith('V')]
+        df[vesta_cols] = df[vesta_cols].fillna(df[vesta_cols].median())
+        
+        # For categorical features, use mode or 'Missing' category
+        cat_cols = df.select_dtypes(include=['object']).columns
+        for col in cat_cols:
+            if df[col].isnull().sum() > 0:
+                df[col] = df[col].fillna('Missing')
+        
+        return df
+                </code></pre>
+            </div>
+
+            <!-- Model Training with Cross-Validation -->
+            <div class="code-section">
+                <div class="code-header">
+                    <h2>2. Robust Model Training with Time-Aware Validation</h2>
+                </div>
+                <div class="code-description">
+                    <p><strong>Innovation:</strong> Custom time-series cross-validation strategy that respects temporal order and prevents data leakage, crucial for financial fraud detection.</p>
+                </div>
+                <pre><code class="language-python">
+import lightgbm as lgb
+from sklearn.metrics import roc_auc_score, precision_recall_curve
+import warnings
+warnings.filterwarnings('ignore')
+
+class FraudDetectionModel:
+    def __init__(self):
+        self.models = {}
+        self.feature_importance = {}
+    
+    def time_series_cv(self, X, y, n_splits=5):
+        """Time-aware cross-validation respecting transaction order"""
+        tscv = TimeSeriesSplit(n_splits=n_splits)
+        cv_scores = []
+        feature_importance = []
+        
+        for fold, (train_idx, val_idx) in enumerate(tscv.split(X)):
+            print(f"Training fold {fold + 1}/{n_splits}")
+            
+            X_train, X_val = X.iloc[train_idx], X.iloc[val_idx]
+            y_train, y_val = y.iloc[train_idx], y.iloc[val_idx]
+            
+            # Train LightGBM with class weights for imbalance
+            model = lgb.LGBMClassifier(
+                n_estimators=1000,
+                learning_rate=0.05,
+                num_leaves=31,
+                class_weight='balanced',
+                random_state=42
+            )
+            
+            model.fit(
+                X_train, y_train,
+                eval_set=[(X_val, y_val)],
+                eval_metric='auc',
+                early_stopping_rounds=100,
+                verbose=False
+            )
+            
+            # Validate and store results
+            val_pred = model.predict_proba(X_val)[:, 1]
+            auc_score = roc_auc_score(y_val, val_pred)
+            cv_scores.append(auc_score)
+            
+            # Store feature importance
+            fold_importance = pd.DataFrame({
+                'feature': X.columns,
+                'importance': model.feature_importances_,
+                'fold': fold
+            })
+            feature_importance.append(fold_importance)
+            
+            self.models[f'fold_{fold}'] = model
+        
+        return cv_scores, pd.concat(feature_importance)
+    
+    def optimize_threshold(self, X_val, y_val):
+        """Find optimal classification threshold for precision-recall tradeoff"""
+        val_pred = self.predict_proba(X_val)
+        
+        precision, recall, thresholds = precision_recall_curve(y_val, val_pred)
+        f1_scores = 2 * (precision * recall) / (precision + recall + 1e-8)
+        
+        # Find threshold that maximizes F1-score
+        optimal_idx = np.argmax(f1_scores[:-1])  # exclude last element
+        optimal_threshold = thresholds[optimal_idx]
+        
+        return optimal_threshold
+                </code></pre>
+            </div>
+
+            <!-- SHAP Explanation Engine -->
+            <div class="code-section">
+                <div class="code-header">
+                    <h2>3. Explainable AI with SHAP Integration</h2>
+                </div>
+                <div class="code-description">
+                    <p><strong>Innovation:</strong> Custom SHAP explanation engine that provides both global feature importance and local instance explanations, bridging the gap between model predictions and business understanding.</p>
+                </div>
+                <pre><code class="language-python">
+import shap
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+class SHAPExplainer:
+    def __init__(self, model, feature_names):
+        self.model = model
+        self.feature_names = feature_names
+        self.explainer = None
+        self.shap_values = None
+    
+    def compute_global_explanations(self, X, sample_size=10000):
+        """Compute global SHAP values for feature importance"""
+        # Sample data for faster computation
+        if len(X) > sample_size:
+            X_sample = X.sample(sample_size, random_state=42)
+        else:
+            X_sample = X
+        
+        # Initialize TreeExplainer for LightGBM
+        self.explainer = shap.TreeExplainer(self.model)
+        self.shap_values = self.explainer.shap_values(X_sample)
+        
+        return self.shap_values
+    
+    def generate_summary_plot(self, X_sample, max_display=20):
+        """Create SHAP summary plot for global feature importance"""
+        plt.figure(figsize=(10, 8))
+        
+        # For binary classification, use SHAP values for class 1 (fraud)
+        if isinstance(self.shap_values, list):
+            shap_array = self.shap_values[1]  # Fraud class
+        else:
+            shap_array = self.shap_values
+        
+        shap.summary_plot(
+            shap_array, 
+            X_sample,
+            feature_names=self.feature_names,
+            max_display=max_display,
+            show=False
+        )
+        
+        plt.tight_layout()
+        plt.savefig('shap_summary.png', dpi=300, bbox_inches='tight')
+        plt.close()
+    
+    def explain_single_prediction(self, instance):
+        """Generate local explanation for a single transaction"""
+        # Get SHAP values for this instance
+        instance_shap = self.explainer.shap_values(instance)
+        
+        if isinstance(instance_shap, list):
+            instance_shap = instance_shap[1]  # Fraud class
+        
+        # Create force plot for individual prediction
+        shap.force_plot(
+            self.explainer.expected_value[1] if isinstance(self.explainer.expected_value, list) 
+            else self.explainer.expected_value,
+            instance_shap,
+            instance,
+            feature_names=self.feature_names,
+            matplotlib=True,
+            show=False
+        )
+        
+        plt.tight_layout()
+        plt.savefig('single_prediction_explanation.png', dpi=300, bbox_inches='tight')
+        plt.close()
+        
+        return instance_shap
+    
+    def get_top_features(self, n_features=10):
+        """Extract top features driving fraud predictions"""
+        if isinstance(self.shap_values, list):
+            shap_array = self.shap_values[1]
+        else:
+            shap_array = self.shap_values
+        
+        # Calculate mean absolute SHAP values
+        feature_importance = pd.DataFrame({
+            'feature': self.feature_names,
+            'importance': np.abs(shap_array).mean(0)
+        })
+        
+        return feature_importance.nlargest(n_features, 'importance')
+                </code></pre>
+            </div>
+
+            <!-- Navigation -->
+            <div class="nav-buttons">
+                <a href="index.html" class="btn">← Back to Main Portfolio</a>
+                <a href="success-analysis.html" class="btn">View Success Analysis →</a>
+            </div>
+        </div>
+    </section>
+
+    <script>hljs.highlightAll();</script>
+</body>
+</html>
