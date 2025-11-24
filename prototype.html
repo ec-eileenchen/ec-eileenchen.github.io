@@ -3,21 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Source Code | Fraud Detection Capstone</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <title>Capstone Project | Eileen Chen</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Base Styles - Matching Portfolio Exactly */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
+            color: var(--text-color);
+            background-color: var(--white);
         }
 
         .container {
@@ -27,25 +42,35 @@
         }
 
         section {
-            padding: 80px 0;
+            padding: 100px 0;
         }
 
         h1, h2, h3 {
+            font-weight: 700;
+            line-height: 1.2;
             margin-bottom: 20px;
             text-align: left;
         }
 
         h1 {
-            font-size: 2.5rem;
-            color: #2c3e50;
+            font-size: 3rem;
         }
 
         h2 {
-            font-size: 2rem;
-            color: #2c3e50;
-            border-bottom: 3px solid #3498db;
-            padding-bottom: 10px;
-            margin-bottom: 30px;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 3%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
         }
 
         .hero {
@@ -55,15 +80,9 @@
             text-align: center;
         }
 
-        .hero h1 {
-            color: white;
-            text-align: center;
-        }
-
-        .hero p {
-            text-align: center;
-            font-size: 1.2rem;
-            opacity: 0.9;
+       p {
+            margin-bottom: 20px;
+            text-align: left;
         }
 
         .code-section {
@@ -74,51 +93,13 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        .code-header {
-            display: flex;
-            justify-content: between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #e9ecef;
-        }
-
-        .code-description {
-            margin-bottom: 25px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            border-left: 4px solid #3498db;
-        }
-
+        
         pre {
             border-radius: 8px;
             padding: 20px !important;
             background: #f8f9fa !important;
             border: 1px solid #e9ecef;
             overflow-x: auto;
-        }
-
-        .nav-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 50px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: #3498db;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .btn:hover {
-            background: #2980b9;
-            transform: translateY(-2px);
         }
 
         @media (max-width: 768px) {
@@ -137,276 +118,252 @@
     </style>
 </head>
 <body>
-    <!-- Hero Section -->
-    <section class="hero">
+    <section id="home" class="hero capstone-hero">
         <div class="container">
-            <h1>Source Code: Key Implementation Details</h1>
-            <p>Critical algorithms and innovative solutions from the fraud detection system</p>
+            <div class="hero-content">
+                <h1>Source Code: Key Implementation Details</h1>
+            </div>
         </div>
     </section>
-
-    <!-- Main Content -->
-    <section>
+     <!-- User Experience Section -->
+    <section id="overview" class="about">
         <div class="container">
-            <!-- Data Preprocessing -->
-            <div class="code-section">
-                <div class="code-header">
-                    <h2>1. Advanced Data Preprocessing Pipeline</h2>
-                </div>
-                <div class="code-description">
-                    <p><strong>Innovation:</strong> Custom preprocessing pipeline handling mixed data types, missing values, and feature engineering with memory optimization for large datasets.</p>
-                </div>
-                <pre><code class="language-python">
-import pandas as pd
-import numpy as np
-from sklearn.preprocessing import StandardScaler, LabelEncoder
-from sklearn.model_selection import TimeSeriesSplit
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="code-header">
+                        <h2>Data Preprocessing</h2>
+                    </div>
+                    <div class="code-description">
+                        <p><strong>Innovation:</strong> Custom preprocessing pipeline handling mixed data types, missing values, and feature engineering with memory optimization for large datasets.</p>
+                    </div>
+                    <pre><code class="language-python">
+# Feature Engineering
+for col in card_cols:
+    if col != 'card1':
+        dataset[f'Amt_{col}_mean'] = dataset['TransactionAmt'] / (dataset.groupby(by= col)['TransactionAmt'].transform('mean'))
+        dataset[f'Amt_{col}_stdev'] = dataset['TransactionAmt'] / (dataset.groupby(by= col)['TransactionAmt'].transform('std'))
 
-class FraudDataPreprocessor:
-    def __init__(self):
-        self.scalers = {}
-        self.encoders = {}
-        self.feature_columns = []
+addr_cols = ['addr1', 'addr2']
+for col in addr_cols:
+    dataset[f'Amt_{col}_mean'] = dataset['TransactionAmt'] / (dataset.groupby(by= col)['TransactionAmt'].transform('mean'))
+    dataset[f'Amt_{col}_stdev'] = dataset['TransactionAmt'] / (dataset.groupby(by= col)['TransactionAmt'].transform('std'))
+
+dataset['Amt_ProductCD_mean'] = dataset['TransactionAmt'] / (dataset.groupby(by= 'ProductCD')['TransactionAmt'].transform('mean'))
+dataset['Amt_ProductCD_stdev'] = dataset['TransactionAmt'] / (dataset.groupby(by= 'ProductCD')['TransactionAmt'].transform('std'))
+
+dataset['dist1_device_mean'] = dataset['dist1'] / (dataset.groupby(by= 'DeviceType')['dist1'].transform('mean'))
+dataset['dist1_device_stdev'] = dataset['dist1'] / (dataset.groupby(by= 'DeviceType')['dist1'].transform('std'))
     
-    def merge_datasets(self, transaction_df, identity_df):
-        """Merge transaction and identity data with memory optimization"""
-        # Reduce memory usage by downcasting numeric types
-        transaction_df = self.reduce_memory_usage(transaction_df)
-        identity_df = self.reduce_memory_usage(identity_df)
-        
-        # Merge on TransactionID with indicator for missing identity data
-        merged_df = pd.merge(
-            transaction_df, 
-            identity_df, 
-            on='TransactionID', 
-            how='left',
-            indicator='has_identity_data'
-        )
-        return merged_df
+for col in d_cols:
+    dataset[f'{col}_Card2_mean'] = dataset[col] / (dataset.groupby(by= 'card2')[col].transform('mean'))
+    dataset[f'{col}_Card2_stdev'] = dataset[col] / (dataset.groupby(by= 'card2')[col].transform('std'))
+
+for col in d_cols:
+    dataset[f'{col}_Card3_mean'] = dataset[col] / (dataset.groupby(by= 'card3')[col].transform('mean'))
+    dataset[f'{col}_Card3_stdev'] = dataset[col] / (dataset.groupby(by= 'card3')[col].transform('std'))
+
+for col in d_cols:
+    dataset[f'{col}_Card4_mean'] = dataset[col] / (dataset.groupby(by= 'card4')[col].transform('mean'))
+    dataset[f'{col}_Card4_stdev'] = dataset[col] / (dataset.groupby(by= 'card4')[col].transform('std'))
+
+for col in d_cols:
+    dataset[f'{col}_Card5_mean'] = dataset[col] / (dataset.groupby(by= 'card5')[col].transform('mean'))
+    dataset[f'{col}_Card5_stdev'] = dataset[col] / (dataset.groupby(by= 'card5')[col].transform('std'))
+
+## Missing Value
+## drop col w/ 90% missing value
+missing_cols_stats = dataset.isnull().mean()
+drop_cols = dataset.loc[:, missing_cols_stats > 0.9]
+drop_cols.columns
+dataset = dataset.loc[:, missing_cols_stats < 0.9]
+                        # Categorical data encoding
+for col in categorical_cols:
+    le = LabelEncoder()
+    all_cat_values = pd.concat([train[col], test[col], final_testing[col]], axis = 0).astype(str)
+    le.fit(all_cat_values)
+    train[col] = le.transform(train[col].astype(str))
+    test[col] = le.transform(test[col].astype(str))
+    final_testing[col] = le.transform(final_testing[col].astype(str))
     
-    def reduce_memory_usage(self, df):
-        """Aggressive memory optimization for large datasets"""
-        for col in df.columns:
-            col_type = df[col].dtype
-            
-            if col_type != object:
-                c_min = df[col].min()
-                c_max = df[col].max()
-                
-                if str(col_type)[:3] == 'int':
-                    if c_min > np.iinfo(np.int8).min and c_max < np.iinfo(np.int8).max:
-                        df[col] = df[col].astype(np.int8)
-                    elif c_min > np.iinfo(np.int16).min and c_max < np.iinfo(np.int16).max:
-                        df[col] = df[col].astype(np.int16)
-                    # ... continue for int32, int64
-                else:
-                    if c_min > np.finfo(np.float16).min and c_max < np.finfo(np.float16).max:
-                        df[col] = df[col].astype(np.float16)
-                    # ... continue for float32
-        return df
-    
-    def handle_missing_values(self, df):
-        """Strategic missing value imputation based on feature analysis"""
-        # For Vesta features, use median imputation
-        vesta_cols = [col for col in df.columns if col.startswith('V')]
-        df[vesta_cols] = df[vesta_cols].fillna(df[vesta_cols].median())
-        
-        # For categorical features, use mode or 'Missing' category
-        cat_cols = df.select_dtypes(include=['object']).columns
-        for col in cat_cols:
-            if df[col].isnull().sum() > 0:
-                df[col] = df[col].fillna('Missing')
-        
-        return df
-                </code></pre>
-            </div>
+## data type alignment
+train[numerical_cols] = train[numerical_cols].astype(float)
+test[numerical_cols] = test[numerical_cols].astype(float)
+final_testing[numerical_cols] = final_testing[numerical_cols].astype(float)
+
+train = train.replace([np.inf, -np.inf], np.nan)
+test = test.replace([np.inf, -np.inf], np.nan)
+final_testing = final_testing.replace([np.inf, -np.inf], np.nan)
+
+# Numerical data stdardization
+ss = StandardScaler()
+train[numerical_cols] = ss.fit_transform(train[numerical_cols])
+test[numerical_cols] = ss.transform(test[numerical_cols])
+final_testing[numerical_cols] = ss.transform(final_testing[numerical_cols])
+
+# Imputation
+## Avoid changing original data
+train_copy = copy.deepcopy(train)
+test_copy = copy.deepcopy(test)
+final_testing_copy = copy.deepcopy(final_testing)
+
+## make new cols indicate what will be imputed
+missing_cols = train_copy.columns[train_copy.isnull().any()]
+for i in missing_cols:
+    train_copy[i + '_was_missing'] = train_copy[i].isnull()
+    test_copy[i + '_was_missing'] = test_copy[i].isnull()
+    final_testing_copy[i + '_was_missing'] = final_testing_copy[i].isnull()
+
+## Simple Imputer
+si = SimpleImputer(strategy = 'median')
+imputed_train = pd.DataFrame(si.fit_transform(train_copy))
+imputed_test = pd.DataFrame(si.transform(test_copy))
+imputed_final_testing = pd.DataFrame(si.transform(final_testing_copy))
+
+imputed_train.columns = train_copy.columns
+imputed_test.columns = test_copy.columns
+imputed_final_testing.columns = final_testing_copy.columns
+
+train = imputed_train
+test = imputed_test
+final_testing = imputed_final_testing
+                    </code></pre>
+                    </div>
 
             <!-- Model Training with Cross-Validation -->
-            <div class="code-section">
-                <div class="code-header">
-                    <h2>2. Robust Model Training with Time-Aware Validation</h2>
-                </div>
-                <div class="code-description">
-                    <p><strong>Innovation:</strong> Custom time-series cross-validation strategy that respects temporal order and prevents data leakage, crucial for financial fraud detection.</p>
-                </div>
-                <pre><code class="language-python">
-import lightgbm as lgb
-from sklearn.metrics import roc_auc_score, precision_recall_curve
-import warnings
-warnings.filterwarnings('ignore')
+                    <div class="code-section">
+                        <div class="code-header">
+                            <h2>Model Training with Time Series Validation</h2>
+                        </div>
+                        <div class="code-description">
+                            <p><strong>Innovation:</strong> Custom time-series cross-validation strategy that respects temporal order and prevents data leakage, crucial for financial fraud detection.</p>
+                        </div>
+                        <pre><code class="language-python">
+##train_test split
+train[numerical_cols].to_numpy()
+fold = 1
+tss = TimeSeriesSplit()
+for train_idx, test_idx in tss.split(train, isFraud):
+    print(fold)
+    train_data, test_data = train.values[train_idx], train.values[test_idx]
+    isFraud_train, isFraud_test = isFraud.iloc[train_idx], isFraud.iloc[test_idx]
+    print(f"Train size: {len(train_data):,}, Test size: {len(test_data):,}")
+    fold += 1
+    train_data = pd.DataFrame(train_data, columns = train.columns)
+    test_data = pd.DataFrame(test_data, columns = train.columns)
+    isFraud_train = pd.Series(isFraud_train, name = isFraud.name, dtype = int)
+    isFraud_test = pd.Series(isFraud_test, name = isFraud.name, dtype = int)
+##Create LightGBM Datasets objects
+split_idx = int(len(train_data) * 0.8)
+X_train, X_test = train_data.iloc[:split_idx], train_data.iloc[split_idx:]
+y_train, y_test = isFraud_train.iloc[:split_idx], isFraud_train.iloc[split_idx:]
 
-class FraudDetectionModel:
-    def __init__(self):
-        self.models = {}
-        self.feature_importance = {}
-    
-    def time_series_cv(self, X, y, n_splits=5):
-        """Time-aware cross-validation respecting transaction order"""
-        tscv = TimeSeriesSplit(n_splits=n_splits)
-        cv_scores = []
-        feature_importance = []
-        
-        for fold, (train_idx, val_idx) in enumerate(tscv.split(X)):
-            print(f"Training fold {fold + 1}/{n_splits}")
-            
-            X_train, X_val = X.iloc[train_idx], X.iloc[val_idx]
-            y_train, y_val = y.iloc[train_idx], y.iloc[val_idx]
-            
-            # Train LightGBM with class weights for imbalance
-            model = lgb.LGBMClassifier(
-                n_estimators=1000,
-                learning_rate=0.05,
-                num_leaves=31,
-                class_weight='balanced',
-                random_state=42
-            )
-            
-            model.fit(
-                X_train, y_train,
-                eval_set=[(X_val, y_val)],
-                eval_metric='auc',
-                early_stopping_rounds=100,
-                verbose=False
-            )
-            
-            # Validate and store results
-            val_pred = model.predict_proba(X_val)[:, 1]
-            auc_score = roc_auc_score(y_val, val_pred)
-            cv_scores.append(auc_score)
-            
-            # Store feature importance
-            fold_importance = pd.DataFrame({
-                'feature': X.columns,
-                'importance': model.feature_importances_,
-                'fold': fold
-            })
-            feature_importance.append(fold_importance)
-            
-            self.models[f'fold_{fold}'] = model
-        
-        return cv_scores, pd.concat(feature_importance)
-    
-    def optimize_threshold(self, X_val, y_val):
-        """Find optimal classification threshold for precision-recall tradeoff"""
-        val_pred = self.predict_proba(X_val)
-        
-        precision, recall, thresholds = precision_recall_curve(y_val, val_pred)
-        f1_scores = 2 * (precision * recall) / (precision + recall + 1e-8)
-        
-        # Find threshold that maximizes F1-score
-        optimal_idx = np.argmax(f1_scores[:-1])  # exclude last element
-        optimal_threshold = thresholds[optimal_idx]
-        
-        return optimal_threshold
-                </code></pre>
-            </div>
 
-            <!-- SHAP Explanation Engine -->
-            <div class="code-section">
-                <div class="code-header">
-                    <h2>3. Explainable AI with SHAP Integration</h2>
+train_whole = lgb.Dataset(X_train, label = y_train)
+valid_whole = lgb.Dataset(X_test, label = y_test)
+
+param_values = [{'objective' : 'binary',
+              'metric' : 'auc',
+              'boosting_type' : 'gbdt',
+              'num_leaves' : num_leaves,
+              'learning_rate' : learning_rate,
+              'colsample_bytree' : cols_sample_bytree,
+              'n_estimators' : 10000,
+              'early_stopping_rounds' : 100,
+              'scale_pos_weight' : 2.3,
+              'verbose' : 0}
+              for num_leaves in [62, 125]
+              for learning_rate in [0.01, 0.03]
+tss = TimeSeriesSplit(n_splits = 5)
+best_auc_score = 0
+best_params = None
+
+for param in param_values:
+    print(f'\nTesting params: {param}')
+    fold_aucs = []
+
+    for fold, (train_idx, val_idx) in enumerate(tss.split(train_data, isFraud_train)):
+        print(f'\nFold {fold}: Train {len(train_idx)}, Valid {len(val_idx)}')
+
+       train_x, val_data = train_data.iloc[train_idx], train_data.iloc[val_idx]
+        isFraud_y, isFraud_val = isFraud_train.iloc[train_idx], isFraud_train[val_idx]
+
+        sm = SMOTE(random_state=42)
+        X_tr_os, y_tr_os = sm.fit_resample(train_x, isFraud_y)
+
+        lgb_train = lgb.Dataset(X_tr_os, label = y_tr_os)
+        lgb_val = lgb.Dataset(val_data, label = isFraud_val)
+
+        model = lgb.train(param,
+                          lgb_train,
+                          valid_sets = [lgb_train, lgb_val],
+                          valid_names = ['train', 'val'],
+                          callbacks=[lgb.log_evaluation(period=200)]) 
+        
+        predict = model.predict(val_data)
+        auc = metrics.roc_auc_score(isFraud_val, predict)
+        fold_aucs.append(auc)
+
+        print(f'Fold {fold} AUC: {auc: .4f}')
+
+    mean_auc = np.mean(fold_aucs)
+    print(f'Mean AUC: {mean_auc: .4f}')
+
+    if mean_auc > best_auc_score:
+        best_auc_score = mean_auc
+        best_params = param
+
+Best Parameters:  {'objective': 'binary', 'metric': 'auc', 
+ 'boosting_type': 'gbdt', 'num_leaves': 125, 'learning_rate': 0.01, 
+ 'colsample_bytree': 0.5, 'n_estimators': 10000, 
+ 'early_stopping_rounds': 100, 'scale_pos_weight': 2.3, 'verbose': 0}
+print('Best Parameters: ', best_params)
+
+print('Best CV AUC: ', best_auc_score)
+
+best_model = lgb.train(best_params,
+                       train_whole,
+                       valid_sets = [train_whole, valid_whole])
+              for cols_sample_bytree in [0.5, 0.7]]
+predicts = best_model.predict(test_data)
+                    </code></pre>
                 </div>
-                <div class="code-description">
-                    <p><strong>Innovation:</strong> Custom SHAP explanation engine that provides both global feature importance and local instance explanations, bridging the gap between model predictions and business understanding.</p>
-                </div>
-                <pre><code class="language-python">
+
+                <!-- SHAP Explanation Engine -->
+                    <div class="code-section">
+                        <div class="code-header">
+                            <h2>Explainable AI</h2>
+                        </div>
+                        <div class="code-description">
+                             <p><strong>Innovation:</strong> Custom SHAP explanation engine that provides both global feature importance and local instance explanations, bridging the gap between model predictions and business understanding.</p>
+                        </div>
+                        <pre><code class="language-python">
 import shap
-import matplotlib.pyplot as plt
-import seaborn as sns
 
-class SHAPExplainer:
-    def __init__(self, model, feature_names):
-        self.model = model
-        self.feature_names = feature_names
-        self.explainer = None
-        self.shap_values = None
-    
-    def compute_global_explanations(self, X, sample_size=10000):
-        """Compute global SHAP values for feature importance"""
-        # Sample data for faster computation
-        if len(X) > sample_size:
-            X_sample = X.sample(sample_size, random_state=42)
-        else:
-            X_sample = X
-        
-        # Initialize TreeExplainer for LightGBM
-        self.explainer = shap.TreeExplainer(self.model)
-        self.shap_values = self.explainer.shap_values(X_sample)
-        
-        return self.shap_values
-    
-    def generate_summary_plot(self, X_sample, max_display=20):
-        """Create SHAP summary plot for global feature importance"""
-        plt.figure(figsize=(10, 8))
-        
-        # For binary classification, use SHAP values for class 1 (fraud)
-        if isinstance(self.shap_values, list):
-            shap_array = self.shap_values[1]  # Fraud class
-        else:
-            shap_array = self.shap_values
-        
-        shap.summary_plot(
-            shap_array, 
-            X_sample,
-            feature_names=self.feature_names,
-            max_display=max_display,
-            show=False
-        )
-        
-        plt.tight_layout()
-        plt.savefig('shap_summary.png', dpi=300, bbox_inches='tight')
-        plt.close()
-    
-    def explain_single_prediction(self, instance):
-        """Generate local explanation for a single transaction"""
-        # Get SHAP values for this instance
-        instance_shap = self.explainer.shap_values(instance)
-        
-        if isinstance(instance_shap, list):
-            instance_shap = instance_shap[1]  # Fraud class
-        
-        # Create force plot for individual prediction
-        shap.force_plot(
-            self.explainer.expected_value[1] if isinstance(self.explainer.expected_value, list) 
-            else self.explainer.expected_value,
-            instance_shap,
-            instance,
-            feature_names=self.feature_names,
-            matplotlib=True,
-            show=False
-        )
-        
-        plt.tight_layout()
-        plt.savefig('single_prediction_explanation.png', dpi=300, bbox_inches='tight')
-        plt.close()
-        
-        return instance_shap
-    
-    def get_top_features(self, n_features=10):
-        """Extract top features driving fraud predictions"""
-        if isinstance(self.shap_values, list):
-            shap_array = self.shap_values[1]
-        else:
-            shap_array = self.shap_values
-        
-        # Calculate mean absolute SHAP values
-        feature_importance = pd.DataFrame({
-            'feature': self.feature_names,
-            'importance': np.abs(shap_array).mean(0)
-        })
-        
-        return feature_importance.nlargest(n_features, 'importance')
-                </code></pre>
-            </div>
+explainer = shap.Explainer(best_model)
+shap_values = explainer.shap_values(test_data)
 
-            <!-- Navigation -->
-            <div class="nav-buttons">
-                <a href="index.html" class="btn">← Back to Main Portfolio</a>
-                <a href="success-analysis.html" class="btn">View Success Analysis →</a>
+custom_feature_names = ['Count_11', 'Card_2', 'Vesta_70', 'Card_6', 'Card_1',
+                 'Count_14', 'Count_5', 'Count_13', 'Count_1', 'Card_Holder_6']
+top_features = 10
+
+shap.summary_plot(shap_values[:, :top_features], test_data.iloc[:, :top_features], plot_type = 'bar', 
+                  feature_names = custom_feature_names[:top_features], show = False)
+plt.xlabel("Average Impact on Model Output")
+plt.tight_layout()
+plt.savefig('XGB_SHAP_summary_bar_chart.jpg')
+plt.show()
+
+shap.summary_plot(shap_values[:, :top_features], test_data.iloc[:, :top_features], plot_type = 'violin', 
+                  feature_names = custom_feature_names[:top_features], show = False)
+plt.xlabel("Average Impact on Model Output")
+plt.tight_layout()
+plt.savefig('3_XGB_SHAP_summary_violin.jpg')
+plt.show()
+                        </code></pre>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-
-    <script>hljs.highlightAll();</script>
 </body>
 </html>
