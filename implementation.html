@@ -290,12 +290,12 @@
             <h3>Key Insight: The Real-World Logic Behind Fraud Detection Metrics</h3>
             <p>In credit card fraud detection, there's a fundamental trade-off between two goals:</p>
             <ul>
-                <li>Catching as much fraud as possible (High Recall)</li>
-                <li>Only flagging transactions you're sure about (High Precision)</li>
+                <li>Catching as much potential fraud as possible (high recall)</li>
+                <li>Only flagging transactions you're sure about (high precision)</li>
             </ul>
-            <p>Real-world systems prioritize high recall because the cost of missing fraud (a "false negative") is much higher than the cost of a false alarm (a "false positive").</p>
+            <p>Real-world systems prioritize high recall because the cost of missing fraud, a false negative case, is much higher than the cost of a false alarm, a false positive case.</p>
             <br>
-            <p>The model's performance (~60% recall, ~30% precision) follows business logic and make financial sense due to the following of reasons.</p>
+            <p>The model's performance (~60% recall and ~30% precision) follows business logic and make financial sense due to the following of reasons:</p>
             <ul>
                 <li>A single missed fraud can cost hundreds of dollars in direct losses</li>
                 <li>A false alarm typically costs just a few dollars in customer service time</li>
