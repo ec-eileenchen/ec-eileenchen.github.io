@@ -166,67 +166,79 @@
         <div class="container">
             <div class="about-content">
                 <div class="about-text">
-                        <p>This section details the technical architecture of the credit card fraud detection and education system. It demonstrates how the project's design evolved from an initial high-level concept into a detailed, implemented structure, showcasing the technical decisions made throughout the capstone process.</p>
+                        <p>This section details the technical architecture of my capstone project.
+                            It demonstrates how the project's design evolved from an initial high-level concept into a detailed, implemented structure, showcasing the technical decisions made throughout the capstone process.</p>
                 
                     <h2>Initial Architectural Vision</h2>
-                    <p>The initial design specification outlined a broad, two-track vision: a machine learning pipeline for analysis and an extended user interface for interaction. This conceptual diagram served as a roadmap at the project's outset.</p>
+                    <p>The initial design outlined a broad, two-track version.
+                        A machine learning pipeline for analysis and extended user interface for interaction.
+                        This conceptual diagram served as a roadmap for my initial project plan.</p>
                 
                     <!-- INSERT YOUR ORIGINAL ARCHITECTURE DIAGRAM HERE -->
                     <div class="img-container">
-                         <p class="img-caption">Figure 1. Initial architectural vision for the fraud detection system</p>
+                         <p class="img-caption">Figure 1. Initial architectural vision for the capstone project</p>
                         <img src="Images/Picture1.png" alt="Initial Architecture Diagram">
                     </div>
                 
                     <h3>Key Components & Rationale:</h3>
                     <ul>
-                        <li><strong>Foundation:</strong> The design was centered on processing the IEEE-CIS Fraud Detection Dataset as the single source of truth.</li>
                         <li><strong>Core Workflow:</strong> It clearly separated the data processing and model-building phase from the user-facing delivery phase.</li>
                         <li><strong>Ambition:</strong> The architecture included an ambitious "Extended User Interactive Feature," initially envisioned as an AI Chatbot, to provide personalized explanations.</li>
-                        <li><strong>Technology Stack:</strong> It identified a suite of potential technologies (Python, Scikit-learn, Streamlit, OpenAI) that would be explored.</li>
+                        <li><strong>Technology Stack:</strong> It identified a group of potential tools and libraries (Python, Scikit-learn, Streamlit, OpenAI) that would be explored.</li>
                     </ul>
                     <p>This initial architecture was crucial for planning but was refined significantly through the implementation process.</p>
                     <br>
                     
                     <h2>Final Implemented Architecture</h2>
-                    <p>The final architecture reflects the realities of development, stakeholder feedback, and the strategic decisions made to ensure a successful, high-quality deliverable. The updated diagram provides a clear, expert-level view of how the system is actually constructed.</p>
+                    <p>The final architecture reflects the realities of development, stakeholder feedback, and the strategic decisions made to ensure a successful, high-quality deliverable. 
+                        The updated diagram provides a clear view of how the system is actually constructed.</p>
                 
                     <!-- INSERT YOUR NEW ARCHITECTURE DIAGRAM HERE -->
                     <div class="img-container">
-                         <p class="img-caption">Figure 2. Final implemented architecture of the fraud detection system</p>
+                         <p class="img-caption">Figure 2. Final implemented architecture of the capstone project</p>
                         <img src="Images/Architectural Diagrams.png" alt="Final Architecture Diagram">
                     </div>
                 
                     <h3>Key Components & Implementation Details:</h3>
                 
-                    <strong>Machine Learning Pipeline (The Analytical Engine)</strong>
+                    <strong>Machine Learning Pipeline/The Analytical Engine</strong>
                     <ul>
-                        <li><strong>Data Source & Preprocessing:</strong> The transaction.csv and identity.csv files were merged on TransactionID. A rigorous preprocessing pipeline was implemented using Pandas and NumPy to handle missing values, encode categorical variables (like ProductCD and card_type), and standardize numerical features. A time-series split was used for validation to prevent data leakage.</li>
-                        <li><strong>Model Training & Validation:</strong> Three models (XGBoost, LightGBM, LSTM) were rigorously trained and evaluated. The primary evaluation metrics were Precision, Recall, F1-Score, and ROC-AUC, reflecting the real-world cost trade-offs of fraud detection. LightGBM was selected as the production model due to its superior performance and computational efficiency.</li>
-                        <li><strong>Explainable AI (XAI):</strong> The SHAP (SHapley Additive exPlanations) library was applied to the LightGBM model to generate global explanations. This process identified and ranked the most important features (e.g., 'Vesta-engineered features,' 'transaction amount') that drive fraud predictions, forming the core analytical insight for the user-facing component.</li>
+                        <li><strong>Data Source & Preprocessing:</strong> The "transaction.csv" and :identity.csv" files were merged on TransactionID feature.
+                            The preprocessing stage was implemented using standardization, encoding, imputation, and feature engineering techniques.
+                            A time-series split was used for validation to prevent data leakage.</li>
+                        <li><strong>Model Training & Validation:</strong> Three models, XGBoost, LightGBM, and LSTM, were trained and evaluated. 
+                                The primary evaluation metrics were Precision, Recall, F1-Score, and ROC-AUC, reflecting the real-world cost trade-offs of fraud detection. 
+                                LightGBM was selected as the production model due to its superior performance and computational efficiency.</li>
+                        <li><strong>Explainable AI (XAI):</strong> The SHAP, SHapley Additive exPlanations, library was applied to the all models to generate summarize explanations. 
+                                This process identified and ranked the most important features that drive fraud predictions, forming the core analytical insight for the user-facing component.</li>
                     </ul>
                 
-                    <strong>User Education Pipeline (The Delivery Mechanism)</strong>
+                    <strong>User Education Pipeline/The Delivery Mechanism</strong>
                     <ul>
                         <li><strong>Insights & Content Generation:</strong> The technical outputs from the SHAP analysis were translated into clear, non-technical language. This content was prepared in English, Spanish, and Chinese to meet the accessibility needs of the stakeholder's community.</li>
-                        <li><strong>Web Application:</strong> A static HTML/CSS/JavaScript website was built from scratch to host this content. Key implemented features include:
+                        <li><strong>Web Application:</strong> A webpage was built from scratch to host this content. 
+                                Key implemented features include:
                             <ul>
-                                <li>A mobile-first, responsive design to ensure accessibility for users primarily on smartphones.</li>
-                                <li>A client-side multi-language engine that dynamically swaps content without requiring a server.</li>
+                                <li>A mobile device friendly, responsive design to ensure accessibility for users primarily on smartphones.</li>
+                                <li>A multi-language feature designed to support and better serve a diverse community of users.</li>
                                 <li>Clear sections explaining fraud detection factors and user rights, directly derived from the model's explainable AI insights.</li>
                             </ul>
                         </li>
                     </ul>
                     <br>
                     
-                    <h2>Evolution of the Architecture: A Reflective Analysis</h2>
+                    <h2>Evolution of the Architecture</h2>
                     <p>The journey from the initial vision to the final architecture involved several key pivots and refinements:</p>
                     <ul>
-                        <li><strong>De-scoping for Focus:</strong> The most significant change was the removal of the Chatbot and Streamlit dashboard. Based on expert advice, this ambitious scope was identified as a risk. The time was re-allocated to deepening the model analysis and SHAP implementation, which strengthened the core intellectual contribution of the project.</li>
-                        <li><strong>From Generic to Specific Tools:</strong> The initial diagram listed many potential libraries. The final architecture reflects the actual tools used to deliver the working product. For example, Plotly and Dash were used for exploratory data analysis but were not needed in the final web deployment, which used a custom, lightweight frontend.</li>
-                        <li><strong>Clarified Data Flow:</strong> The final diagram makes the critical "hand-off" point explicit: the "Key Insights & Feature Importance" generated by the SHAP analysis are the direct input for the "Insights & Content Generation" phase. This clarifies that the webpage is not a live model but an educational tool based on the model's static analysis.</li>
-                        <li><strong>Stakeholder-Driven Design:</strong> The emphasis on multi-language support and mobile-friendly design in the final architecture was a direct result of feedback from the Financial Empowerment Network (FEN), ensuring the tool would be practical and accessible for its intended audience.</li>
+                        <li><strong>De-scoping for focus:</strong> The most significant change was the removal of the Chatbot and Streamlit based interface. 
+                            Based on expert advice, this ambitious scope was identified as a risk. 
+                            The time was re-allocated to deepening the model analysis and SHAP implementation, which strengthened the core intellectual contribution of the project.</li>
+                        <li><strong>From generic to specific tools:</strong> The initial diagram listed many potential libraries. 
+                            The final architecture reflects the actual tools used to deliver the working product. </li>
+                        <li><strong>Clarified data flow:</strong> The feature importance analysis generated by the SHAP are the direct input for the "Insigth & Content Generation" phase.
+                            This clarifies that the webpage is nto a live model but an educaitonal tool based on the model's static analysis.</li>
+                        <li><strong>Stakeholder-driven design:</strong> The emphasis on multi-language support and mobile-friendly design in the final architecture was a direct result of feedback from the Financial Empowerment Network (FEN), ensuring the tool would be practical and accessible for its intended audience.</li>
                     </ul>
-                    <p>This architectural evolution demonstrates a mature approach to software and data science projects: starting with a bold vision and making pragmatic, evidence-based decisions to deliver a robust, high-value final product.</p>
                 </div>
             </div>
         </div>    
