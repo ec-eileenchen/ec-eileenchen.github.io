@@ -151,8 +151,8 @@
                     </div>
                     <div class="code-description">
                         <p>The data preprocessing stage consists of four main purposes. 
-                            Feature engineering, creating interaction features that captures deviations from categorical group means and standard deviations, followed by label encoding for categorical features and standardization for numerical features.
-                            Lastely, median simple imputation with missing-value indicator flags was implemented to preserve the informativity of the original patterns.</p>
+                            Feature engineering, creating interaction features that captures deviations from categorical group means and standard deviations, follows by label encoding for categorical features and standardization for numerical features.
+                            Lastely, median simple imputation with missing-value indicator flags is implemented to preserve the informativity of the original patterns.</p>
                     </div>
                     <pre><code class="language-python">
 # Feature Engineering
@@ -253,7 +253,10 @@ final_testing = imputed_final_testing
                             <h2>Model Training with Time Series Validation</h2>
                         </div>
                         <div class="code-description">
-                            <p> The time-series cross-validation strategy that respects temporal order and prevents data leakage, crucial for financial fraud detection.</p>
+                            <p>The model building section includes implementation of a time-series cross-validation strategy to prevent data leakage.
+                                It performs hyperparameter tuning over a defined parameter space for a LightGBM model, the performance is evaluated witht he AUC metric.
+                                With each fold, the SMOTE oversampling technique is applied to the training data to address class imbalance.
+                                The best hyperparameters are selected based on the highest mean cross-validation AUC.</p>
                         </div>
                         <pre><code class="language-python">
 ##train_test split
@@ -352,7 +355,8 @@ predicts = best_model.predict(test_data)
                             <h2>Explainable AI</h2>
                         </div>
                         <div class="code-description">
-                             <p>SHAP explanation engine that provides summarized feature importance, bridging the gap between model predictions and business understanding.</p>
+                            <p>The explainable AI section examines the model's interpretability using SHAP to explainthe predictions of the trained LightGBM model.
+                                The analysis generates two summary visualization plots, a bar chart ranking the top 10 features by mean absolute SHAP value and a violin plot revealing the distribution and magnitude of each of the top 10 feature's effects across all samples.</p>
                         </div>
                         <pre><code class="language-python">
 import shap
