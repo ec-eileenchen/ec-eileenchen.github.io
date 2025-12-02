@@ -163,62 +163,62 @@
                 <div class="about-text">
                     <h2>From Personal Experience to Hands-On Practice</h2>
                     <p>My capstone journey, "Understanding How Credit Card Fraud is Detected and Protecting Yourself From Fraud", was born at the intersection of personal experience and professional aspiration. 
-                        During an interview for an investment banking internship, I was asked about fraud detection models related cases. It made me realize that these cases questions weren't just theoretical, it was a window into the real-world challenges that financial institutions encounter daily.
+                        During an interview for an investment banking internship, I was asked about fraud detection models and related cases. It made me realize that these cases questions weren't just theoretical, it was a window into the real-world challenges that financial institutions encounter daily.
                     </p>
                     <br>
                     <p>The topic became personally compelling because it demystified a common experience, receiving a text from the bank asking whether it was you that was using the card, and transformed it into a tangible data science problem. 
-                        I saw this proect as the perfect opportunity to bridge my academicd studies in Applied Computing, Data Analytics, and Business Administration with my career ambitions in the dynamic fintech space.
+                        I saw this project as the perfect opportunity to bridge my academicd studies in Applied Computing, Data Analytics, and Business Administration with my career ambitions in the dynamic fintech space.
                     </p>
                     <br>
                     
                     <h2>From Data to Insights</h2>
-                    <p>I work with the massive Vesta partnered IEEE-CIS dataset consists 435 features from merged transaction and identity information tables. 
-                        A major data quality issue was the presence of missing values and features on vastly different scales. My data analytics minor provided the framework for a proper preprocessing stage, which imvolved imputation for missing values, one-hot encoding for categorical veriables, and robust standardization to ensure no feature is set up correctly for the models.
+                    <p>I worked with the massive Vesta partnered IEEE-CIS dataset consists of 435 features from merged transaction and identity information tables. 
+                        A major data quality issue was the presence of missing values and features on vastly different scales. My Data Analytics minor provided the framework for a proper preprocessing stage, which involved imputation for missing values, one-hot encoding for categorical variables, and robust standardization to ensure all features were correctly scaled for the models.
                     </p>
                     <br>
-                    <p>The model selection process was a lesson in empirical testing and theoretical understanding. I experimented with XGBoost, LightGBM, and the LSTM network. The LSTM's underperformance was a key learning moment. My hypothesis, due to the characteristic of the dataset, was that the sequential nature of LSTMs required longer, consistent frudulent patterns to learn from.
-                        Given the extreme small amout of fraud cases in the dataset, the LSTM struggled to find meaningful temporal dependencies,
-                        where tree-based models like LightGBM outperform at evaluating the complex relationships between hundred of features at a single point in time. 
-                        Light GBM was ultimately selected nor only for its performance across key metrics but also for its computational efficiency, which was critical given the dataset's size and my hardware constraints.
-                        Learning to implement and tune these models, especially the entirely new concept of LSTMs, was a steep curve. I relied heavily on official documentation and other related blog posts, where the key insight was understandinghow to structure time-series data for LSTM input and the importance of its hyperparameters.
+                    <p>The model selection process was a lesson in empirical testing and theoretical understanding. I experimented with XGBoost, LightGBM, and the LSTM network. The LSTM's underperformance was a key learning moment. My hypothesis, based on the dataset's characteristics, was that the sequential nature of LSTMs required longer, consistent fraudulent patterns to learn from.
+                        Given the extreme small amount of fraud cases in the dataset, the LSTM struggled to find meaningful temporal dependencies,
+                        whereas tree-based models like LightGBM excel at evaluating the complex relationships between hundreds of features at a single point in time. 
+                        LightGBM was ultimately selected not only for its performance across key metrics but also for its computational efficiency, which was critical given the dataset's size and my hardware constraints.
+                        Learning to implement and tune these models, especially the entirely new concept of LSTMs, was a steep learning curve. I relied heavily on official documentation and other related blog posts, where the key insight was understandinghow to structure time-series data for LSTM input and the importance of its hyperparameters.
                     </p>
                     <br>
                     
                     <h2>Navigating Challenges and Refining the Vision</h2>
-                    <p>A significant challenge was adjusting and improving model performance with real-world utility. While the accuracy was high, the null accuracy was also high, which is common phenomenon in imbalanced datasets where fraud is rare.
-                        The breakthrough cam from applying a business-minded perspective. I shifted my focus from raw accuracy to the precision-recall trade-off. In fraud detection, missing a fraudulent transaction, low recall, creates bigger consequences than occasionally flagging a legitimate transaction, lower precision.
-                        This strategic pivot showcase that I was evaluating my model not on an abstract academic metric, but on a framework that reflected actual business costs and risks.
+                    <p>A significant challenge was improving model performance to achieve real-world utility. While overall accuracy was high, the null accuracy, predicting the majority class, was also high, a common phenomenon in imbalanced datasets where fraud is rare.
+                        The breakthrough came from applying a business-minded perspective. I shifted my focus from raw accuracy to the precision-recall trade-off. In fraud detection, missing a fraudulent transaction, low recall, poses a greater risk than occasionally flagging a legitimate transaction, lower precision.
+                        This strategic pivot demonstrated that I was evaluating my model not on an abstract academic metric, but on a framework that reflected actual business costs and risks.
                     </p>
                     <br>
-                    <p>This project was also a lesson in scope management and stakeholder engagement. Early meeting with the Financial Empowerement Network (FEN) was a right move. their feedback on emphasizing mobile accesibility, multi-language support, basic credit card user rights, and a focus on mitigating the consequences of fraud rather than just prevention directly shaped the final webpage's design.
-                        Similarly, my faculty expert's advice to drop the chatbot feature was valuable but difficult for me to let go of. However, this strategic de-scoping allowed me to re-asslocate my time and energy toward refining the core machinelearning model and the explanatory SHAP analysis, significantly strengthening the project's foundation.
+                    <p>This project was also a lesson in scope management and stakeholder engagement. An early meeting with the Financial Empowerment Network (FEN) was the right move. Their feedback on emphasizing mobile accessibility, multi-language support, basic credit card user rights, and a focus on mitigating the consequences of fraud rather than just prevention directly shaped the final webpage's design.
+                        Similarly, my faculty expert's advice to drop the chatbot feature was valuable but difficult for me to let go of. However, this strategic de-scoping allowed me to reallocate my time and energy toward refining the core machine learning model and the explanatory SHAP analysis, significantly strengthening the project's foundation.
                     </p>
                     <br>
                     
                     <h2>Key Technical and Methodological Takeaways</h2>
-                    <p>The moment of greatest validation cam when the SHAP analysisi yielded consistent results across different models.
+                    <p>The moment of greatest validation came when the SHAP analysisi yielded consistent results across different models.
                         This consistency was critical because the SHAP output formed the foundation of my webpage, specifically the explainable AI component that would help users understand what factors trigger fraud alerts.
-                        If the results varied significantly between models, it would have undermined the credibility of the entire explanatory frameworl.
-                        The consistency served as confirmatio that my methodological process, from data cleaning to model training, had coverged on stable, meaningful patterns within the data.
+                        If the results varied significantly between models, it would have undermined the credibility of the entire explanatory framework.
+                        The consistency served as confirmation that my methodological process, from data cleaning to model training, had converged on stable, meaningful patterns within the data.
                     </p>
                     <br>
-                    <p>Looking back, my initial assumption that accuracy was the primary success metric represented a significant miscalculation, and correcting this perspective porved to be one of my most valuable learning experiences.
+                    <p>Looking back, my initial assumption that accuracy was the primary success metric represented a significant miscalculation, and correcting this perspective proved to be one of my most valuable learning experiences.
                         This realization highlighted the difference between academic metrics and real-world business priorities.
-                        If I had additional time, I would explore ensemble approaches, potentially using a high-precision model to verify alerts from a high-recall model, to further enhance performance boundaries while maintaining practical utility.</p>
+                        If I had additional time, I would explore ensemble approaches, potentially using a high-precision model to verify alerts from a high-recall model, to further enhance performance while maintaining practical utility.</p>
                     <br>
 
                     <h2>Professional Growth and Career Preparation</h2>
                     <p>This capstone project served as a comprehensive bridge between academic learning and professional practice, fundamentally shaping my approach to technical problem-solving and stakeholder engagement.
-                        The experience of working with real-world financial data and addressing the specific needs for the FEN transformed my understanding of what it means to be an effective data scientist in the fintech sector.
+                        The experience of working with real-world financial data and addressing the specific needs of the FEN transformed my understanding of what it means to be an effective data scientist in the fintech sector.
                         I learned that technical excellence must be balanced with practical considerations in order to create meaningful impact for end-users.</p>
                     <br>
                     <p>The project directly enhanced my career readiness by providing concrete experience with the exact type of challenges I'll face in industry roles.
-                        From managing stakeholder expectations and adapting to feedback from FEN, to making strategic decisions about scope and implementation, I developed the professional judgement that separates academic exercises from production-ready solutions.
-                        This project gave me confidence in articulating complex technical concepts to diverse audiences, which is a skill that is invaluable in job interviews and networking situations.</p>
+                        From managing stakeholder expectations and adapting to feedback from FEN, to making strategic decisions about scope and implementation, I developed the professional judgment that separates academic exercises from production-ready solutions.
+                        This project gave me confidence in articulating complex technical concepts to diverse audiences, a skill that is invaluable in job interviews and networking situations.</p>
                     <br>
                     <p>Most importantly, this project demonstrated the power of interdisciplinary thinking.
                         My minors in Business Administration and Data Analytics were not just supplementary, they were essential to the project's success.
-                        The business knowledge helped me understand why certain model metrics mattered more than others in the banking context, while data anlytics principles ensured the integrity of the preprocessing stage.
+                        The business knowledge helped me understand why certain model metrics mattered more than others in the banking context, while data analytics principles ensured the integrity of the preprocessing stage.
                         This integration of technical skills with domain knowledge represents a unique and comprehensive way of problem-solving that is valuable in today's competitive job market.</p>
                     <br>
                     <a href="capstone.html" class="btn">Back to main page</a>
@@ -228,6 +228,7 @@
     </section>
 
 </body>
+
 
 
 
